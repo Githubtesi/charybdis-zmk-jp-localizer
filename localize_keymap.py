@@ -39,24 +39,37 @@ def translate_zmk_to_jp_windows(content):
 
     return new_content
 
+import shutil
+
 def main():
     input_file = 'charybdis.keymap'
-    output_file = 'charybdis_jp.keymap'
+    backup_file = 'charybdis_bk.keymap'
+    output_file = 'charybdis.keymap'  # ← 出力名は元のまま
 
     try:
+        # 🔹 ① 先にバックアップを作成
+        shutil.copyfile(input_file, backup_file)
+        print(f"Backup created: {backup_file}")
+
+        # 🔹 ② 元ファイルを読み込み
         with open(input_file, 'r', encoding='utf-8') as f:
             content = f.read()
 
+        # 🔹 ③ 変換処理
         localized_content = translate_zmk_to_jp_windows(content)
 
+        # 🔹 ④ 元のファイル名で上書き保存
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(localized_content)
         
-        print(f"Success! Generated {output_file}")
+        print(f"Success! Overwritten {output_file}")
         print("Note: Check the 'combos' and 'macros' sections for logic consistency.")
 
     except FileNotFoundError:
         print(f"Error: {input_file} not found.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
 
 if __name__ == "__main__":
     main()
