@@ -35,7 +35,7 @@ def translate_zmk_to_jp_windows(content):
 
         # --- その他 ---
         r'PIPE': 'LS(INT3)',
-        r'UNDERSCORE|UNDER': 'LS(INT1)',
+        r'UNDERSCORE|UNDER': 'LS(INT1)', # left+int1 で アンダースコア
         r'LANG_ZENKAKUHANKAKU|ZNK_HNK|ZNK': 'GRAVE',
     }
 
@@ -83,3 +83,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
