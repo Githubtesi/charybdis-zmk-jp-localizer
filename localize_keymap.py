@@ -1,5 +1,6 @@
 import re
 import shutil
+from datetime import datetime  # 1. 追加
 
 
 def translate_zmk_to_jp_windows(content):
@@ -27,7 +28,7 @@ def translate_zmk_to_jp_windows(content):
         r'CARET': 'EQUAL',
         r'COLON': 'QUOTE',
 
-        # --- 括弧類 (前回修正済み) ---
+        # --- 括弧類 ---
         r'LEFT_BRACKET|LBKT': 'RBKT',  # [ -> ]キー ([)
         r'RIGHT_BRACKET|RBKT': 'BSLH',  # ] -> \キー (])
         r'LEFT_BRACE|LBRC': 'LS(RBKT)',  # {
@@ -35,18 +36,15 @@ def translate_zmk_to_jp_windows(content):
 
         # --- その他 ---
         r'PIPE': 'LS(INT3)',
-        r'UNDERSCORE|UNDER': 'LS(INT1)', # left+int1 で アンダースコア
+        r'UNDERSCORE|UNDER': 'LS(INT1)',  # left+int1 で アンダースコア
         r'LANG_ZENKAKUHANKAKU|ZNK_HNK|ZNK': 'GRAVE',
     }
 
-    # 一括置換用の正規表現（カッコを含むため特殊文字をエスケープしたものを優先）
-    # 重複を避けるため、長い文字列から順にマッチさせる
     sorted_patterns = sorted(mapping.keys(), key=len, reverse=True)
     pattern = re.compile(r'(?<![a-zA-Z_])(' + '|'.join(sorted_patterns) + r')(?![a-zA-Z_])')
 
     def replace_match(match):
         original = match.group(0)
-        # エスケープを考慮してマッチング
         for k, v in mapping.items():
             if re.fullmatch(k, original):
                 return v
@@ -57,10 +55,14 @@ def translate_zmk_to_jp_windows(content):
 
 def main():
     input_file = 'charybdis.keymap'
-    backup_file = 'charybdis_bk.keymap'
     output_file = 'charybdis.keymap'
 
+    # 2. 現在の日時を取得してファイル名を作成 (例: charybdis_bk_20231027_1530.keymap)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+    backup_file = f'charybdis_bk_{timestamp}.keymap'
+
     try:
+        # バックアップ作成
         shutil.copyfile(input_file, backup_file)
         print(f"Backup created: {backup_file}")
 
@@ -83,5 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
