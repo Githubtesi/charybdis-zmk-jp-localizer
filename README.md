@@ -1,3 +1,4 @@
+
 # charybdis-zmk-jp-localizer
 
 このプロジェクトは、**US配列の自作キーボード（Charybdis等）を、日本語（JIS）設定のWindows環境で「刻印通り」に使用する**ために、ZMKの `keymap` ファイルを自動変換するツールを提供します。
@@ -45,6 +46,9 @@ WindowsがJIS認識している状態で、USの刻印通りの文字を出す�
 | `[` | `[` | `&kp RBKT` |
 | `]` | `]` | `&kp NON_US_HASH` |
 | 半角/全角 | `` ` `` (Esc下) | `&kp LANG_ZENKAKUHANKAKU` |
+
+### 💡 安定入力のためのヒント
+- **`+` `-` `*` `/` および数字については、`KP_`（キーパッド用キーコード：`KP_PLUS`, `KP_N1`等）を使用すると入力が安定します。**
 
 ## 📂 ファイル構成
 - `localize_keymap.py`: `charybdis.keymap` をJIS Windows用に一括変換するPythonスクリプト。
