@@ -44,6 +44,7 @@ def translate_zmk_to_jp_windows(content):
 
         r'DOUBLE_QUOTES|DQT': 'LS(N2)',
         r'SINGLE_QUOTE|SQT': 'LS(N7)',
+        r'KP_EQUAL': 'LS(MINUS)',
         r'EQUAL': 'LS(MINUS)',
         r'PLUS': 'LS(SEMI)',
         r'TILDE': 'LS(EQUAL)',
