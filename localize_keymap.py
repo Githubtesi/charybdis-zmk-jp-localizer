@@ -43,8 +43,8 @@ def translate_zmk_to_jp_windows(content):
         # --- シンボル名・JIS位置修正 (決定版) ---
         r'SINGLE_QUOTE|SQT': 'LS(N7)',   # ' は Shift+7
         r'DOUBLE_QUOTES|DQT': 'LS(N2)', # " は Shift+2
+        r'PLUS': 'LS(SEMI)',       # + は 英字でshift+=  日本ではShift+;
         r'EQUAL': 'LS(MINUS)',          # = は Shift+-
-        r'PLUS': 'LS(SEMI)',            # + は Shift+;
         r'ASTERISK|ASTRK': 'LS(QUOTE)', # * は Shift+:
         r'AMPERSAND|AMPS': 'LS(N6)',    # & は Shift+6
         r'CARET': 'EQUAL',              # ^ は ^キー(USのEQUAL位置)
@@ -65,8 +65,7 @@ def translate_zmk_to_jp_windows(content):
 
         # --- その他 ---
         r'PIPE': 'LS(INT3)',             # | (ろ)
-        r'UNDERSCORE': 'LS(INT1)', # _ (ろ) または INT1
-        r'LS(UNDER)': 'LS(INT1)',  # _ (ろ) または INT1
+        r'UNDERSCORE|UNDER': 'LS(INT1)', # _ (ろ) または INT1
         r'LANG_ZENKAKUHANKAKU|ZNK_HNK|ZNK': 'GRAVE',
     }
 
