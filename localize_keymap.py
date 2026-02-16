@@ -7,6 +7,7 @@ def translate_zmk_to_jp_windows(content):
     # 置換辞書の定義 (USでの意図 -> JIS認識のWindows用のZMKコード)
     mapping = {
         # --- 数字キーのShift組み合わせ (JIS Windows用修正) ---
+        # left_shift
         r'LS\(N2\)': 'LBKT',  # @
         r'LS\(N6\)': 'EQUAL',  # ^
         r'LS\(N7\)': 'LS(N6)',  # &
@@ -36,20 +37,20 @@ def translate_zmk_to_jp_windows(content):
         r'POUND|HASH': 'HASH',
         r'DOLLAR|DLLR': 'DLLR',
         r'PERCENT|PRCNT': 'PRCNT',
-        r'CARET': 'EQUAL',
-        r'AMPERSAND|AMPS': 'LS(N6)',
-        r'ASTERISK|ASTRK': 'LS(QUOTE)',
-        r'LEFT_PARENTHESIS|LPAR': 'LS(N8)',
-        r'RIGHT_PARENTHESIS|RPAR': 'LS(N9)',
+        r'LEFT_PARENTHESIS|LPAR': 'LS(N8)', # (
+        r'RIGHT_PARENTHESIS|RPAR': 'LS(N9)', # )
 
-        r'DOUBLE_QUOTES|DQT': 'LS(N2)',
-        r'SINGLE_QUOTE|SQT': 'LS(N7)',
-        r'KP_EQUAL': 'LS(MINUS)',
-        r'EQUAL': 'LS(MINUS)',
-        r'PLUS': 'LS(SEMI)',
-        r'TILDE': 'LS(EQUAL)',
-        r'COLON': 'QUOTE',
-        r'SEMICOLON|SEMI': 'SEMI',
+        # --- シンボル名・JIS位置修正 (決定版) ---
+        r'SINGLE_QUOTE|SQT': 'LS(N7)',   # ' は Shift+7
+        r'DOUBLE_QUOTES|DQT': 'LS(N2)', # " は Shift+2
+        r'EQUAL': 'LS(MINUS)',          # = は Shift+-
+        r'PLUS': 'LS(SEMI)',            # + は Shift+;
+        r'ASTERISK|ASTRK': 'LS(QUOTE)', # * は Shift+:
+        r'AMPERSAND|AMPS': 'LS(N6)',    # & は Shift+6
+        r'CARET': 'EQUAL',              # ^ は ^キー(USのEQUAL位置)
+        r'TILDE': 'LS(EQUAL)',          # ~ は Shift+^キー
+        r'COLON': 'QUOTE',              # : は :キー(USのQUOTE位置)
+        r'SEMICOLON|SEMI': 'SEMI',      # ; は ;キー
 
         # --- 不等号・疑問符 ---
         r'LESS_THAN|LT': 'LT',
@@ -57,14 +58,15 @@ def translate_zmk_to_jp_windows(content):
         r'QUESTION|QUES': 'QUES',
 
         # --- 括弧類 ---
-        r'LEFT_BRACKET|LBKT': 'RBKT',
-        r'RIGHT_BRACKET|RBKT': 'BSLH',
-        r'LEFT_BRACE|LBRC': 'LS(RBKT)',
-        r'RIGHT_BRACE|RBRC': 'LS(BSLH)',
+        r'LEFT_BRACKET|LBKT': 'RBKT',  # [
+        r'RIGHT_BRACKET|RBKT': 'BSLH',  # ]
+        r'LEFT_BRACE|LBRC': 'LS(RBKT)',  # {
+        r'RIGHT_BRACE|RBRC': 'LS(BSLH)',  # }
 
         # --- その他 ---
-        r'PIPE': 'LS(INT3)',
-        r'UNDERSCORE|UNDER': 'LS(INT1)',
+        r'PIPE': 'LS(INT3)',             # | (ろ)
+        r'UNDERSCORE': 'LS(INT1)', # _ (ろ) または INT1
+        r'LS(UNDER)': 'LS(INT1)',  # _ (ろ) または INT1
         r'LANG_ZENKAKUHANKAKU|ZNK_HNK|ZNK': 'GRAVE',
     }
 
@@ -100,4 +102,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
