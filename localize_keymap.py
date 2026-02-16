@@ -11,7 +11,7 @@ def translate_zmk_to_jp_windows(content):
         r'LS\(N2\)': 'LBKT',  # @
         r'LS\(N6\)': 'EQUAL',  # ^
         r'LS\(N7\)': 'LS(N6)',  # &
-        r'LS\(N8\)': 'LS(QUOTE)',  # *
+        r'LS\(N8\)': 'LS(SQT)',  # *
         r'LS\(N9\)': 'LS(N8)',  # (
         r'LS\(N0\)': 'LS(N9)',  # )
 
@@ -45,17 +45,17 @@ def translate_zmk_to_jp_windows(content):
         r'DOUBLE_QUOTES|DQT': 'LS(N2)', # " は Shift+2
         r'PLUS': 'LS(SEMI)',       # + は 英字でshift+=  日本ではShift+;
         r'EQUAL': 'LS(MINUS)',          # = は Shift+-
-        r'ASTERISK|ASTRK': 'LS(QUOTE)', # * は Shift+:
+        r'ASTERISK|ASTRK': 'LS(SQT)', # * は Shift+:
         r'AMPERSAND|AMPS': 'LS(N6)',    # & は Shift+6
         r'CARET': 'EQUAL',              # ^ は ^キー(USのEQUAL位置)
         r'TILDE': 'LS(EQUAL)',          # ~ は Shift+^キー
-        r'COLON': 'QUOTE',              # : は :キー(USのQUOTE位置)
+        r'COLON': 'SQT',              # : は :キー(USのQUOTE位置)
         r'SEMICOLON|SEMI': 'SEMI',      # ; は ;キー
 
         # --- 不等号・疑問符 ---
         r'LESS_THAN|LT': 'LT',
         r'GREATER_THAN|GT': 'GT',
-        r'QUESTION|QUES': 'QUES',
+        r'QUESTION|QUES': 'LS(SLASH)',
 
         # --- 括弧類 ---
         r'LEFT_BRACKET|LBKT': 'RBKT',  # [
