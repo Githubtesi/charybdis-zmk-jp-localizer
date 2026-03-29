@@ -36,12 +36,12 @@ def translate_zmk_to_jp_windows(content):
         r'POUND|HASH': 'HASH',
         r'DOLLAR|DLLR': 'DLLR',
         r'PERCENT|PRCNT': 'PRCNT',
-        r'CARET': 'EQUAL',
+        r'CACARET': 'EQUAL',
         r'AMPERSAND|AMPS': 'LS(N6)',
         r'ASTERISK|ASTRK': 'LS(QUOTE)',
         r'LEFT_PARENTHESIS|LPAR': 'LS(N8)',
         r'RIGHT_PARENTHESIS|RPAR': 'LS(N9)',
-
+        
         r'DOUBLE_QUOTES|DQT': 'LS(N2)',
         r'SINGLE_QUOTE|SQT': 'LS(N7)',
         r'KP_EQUAL': 'LS(MINUS)',
@@ -50,6 +50,7 @@ def translate_zmk_to_jp_windows(content):
         r'TILDE': 'LS(EQUAL)',
         r'COLON': 'SQT',
         r'SEMICOLON|SEMI': 'SEMICOLON',
+
 
         # --- 不等号・疑問符 ---
         r'LESS_THAN|LT': 'LT',
@@ -66,6 +67,7 @@ def translate_zmk_to_jp_windows(content):
         r'PIPE': 'LS(INT3)',
         r'UNDERSCORE|UNDER': 'LS(INT1)',
         r'LANG_ZENKAKUHANKAKU|ZNK_HNK|ZNK': 'GRAVE',
+        r'NON_US_BACKSLASH|NUBS': 'INT3',  # 「¥」キー（円記号/バックスラッシュ）
     }
 
     # 長いパターンから順にマッチさせる
