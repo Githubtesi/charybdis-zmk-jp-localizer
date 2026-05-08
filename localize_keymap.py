@@ -36,7 +36,7 @@ def translate_zmk_to_jp_windows(content):
         r'POUND|HASH': 'HASH',
         r'DOLLAR|DLLR': 'DLLR',
         r'PERCENT|PRCNT': 'PRCNT',
-        r'CACARET': 'EQUAL',
+        r'CARET': 'EQUAL',
         r'AMPERSAND|AMPS': 'LS(N6)',
         r'ASTERISK|ASTRK': 'LS(QUOTE)',
         r'LEFT_PARENTHESIS|LPAR': 'LS(N8)',
